@@ -1,0 +1,18 @@
+@use "./assets/styles/index.scss" as *;
+
+.app {
+  margin-top: toRem(20);
+  display: grid;
+  grid-template-rows: toRem(150) auto;
+
+  &-main {
+    display: flex;
+    justify-content: space-evenly;
+    padding: toRem(20) 8%;
+
+    .task-column {
+      width: 33.33%;
+      margin: toRem(20);
+    }
+  }
+}

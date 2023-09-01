@@ -1,0 +1,12 @@
+@use "./../index.scss" as *;
+
+.tag {
+  padding: toRem(2) toRem(4);
+  outline: none;
+  transition: transform 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

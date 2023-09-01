@@ -1,0 +1,56 @@
+@use "./index.scss" as *;
+
+.app-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: toRem(1) solid gray;
+
+  .task-form {
+    width: 45%;
+    .task-input {
+      font-size: toRem(20);
+      font-weight: 500;
+      background: $input-bg-clr;
+      color: black;
+      border: toRem(1) solid $input-bdr-clr;
+      border-radius: toRem(5);
+      padding: toRem(8) toRem(12);
+      width: 100%;
+      margin-bottom: toRem(15);
+      outline: none;
+      font-family: inherit;
+    }
+
+    .form-bottom {
+      display: flex;
+      width: 100%;
+      align-items: center;
+
+      &__buttons {
+        display: flex;
+        gap: toRem(8);
+      }
+
+      .task-status {
+        margin-left: auto;
+        padding: toRem(4) toRem(8);
+        font-size: toRem(16);
+        outline: none;
+        margin-right: toRem(8);
+        border-radius: toRem(3);
+      }
+
+      .task-submit-btn {
+        padding: toRem(8) toRem(8);
+        font-size: toRem(16);
+        background: $teal-clr;
+        border: toRem(1) solid $teal-clr;
+        outline: none;
+        border-radius: toRem(3);
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@use "./../index.scss" as *;
+
+.task-card {
+  width: 100%;
+  padding: toRem(15) toRem(12);
+  border: toRem(1) solid $input-bdr-clr;
+  border-radius: toRem(5);
+  margin-bottom: toRem(12);
+
+  .task-text {
+    font-size: toRem(20);
+    text-transform: capitalize;
+    margin-bottom: toRem(20);
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+
+    .task-card__tags {
+      display: flex;
+      gap: toRem(5);
+    }
+
+    .task-card__delete {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: none;
+      font-size: toRem(20);
+      color: rgb(145, 145, 145);
+      transition: all 0.3s;
+
+      &:hover {
+        transform: scale(1.2);
+        filter: brightness(50%);
+      }
+    }
+  }
+}
