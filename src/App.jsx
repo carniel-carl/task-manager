@@ -5,13 +5,13 @@ import TaskColumn from "./component/TaskColumn";
 
 export const TaskContext = React.createContext();
 
-const oldTasks = localStorage.getItem("tasks");
+const oldTasks = localStorage.getItem("allTasks");
 
 const App = () => {
   const [tasks, setTasks] = useState(JSON.parse(oldTasks) || []);
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("allTasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const handleDelete = (taskID) => {

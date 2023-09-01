@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import "./../assets/styles/TaskForm.scss";
 import Tag from "./UI/Tag";
@@ -9,40 +9,37 @@ const tags = ["HTML", "CSS", "Javascript", "React"];
 const TaskForm = () => {
   const { setTasks } = useContext(TaskContext);
 
-  const [taskData, setTaskData] = useState({
-    task: "",
-    status: "todo",
-    tags: [],
-  });
+  const [chosenTag, setChosenTag] = useState([]);
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setTaskData((prev) => ({ ...prev, [name]: value }));
-  };
+  const inputRef = useRef("");
+  const statusRef = useRef("");
 
   const checkTag = (tagName) => {
-    return taskData.tags.some((item) => item === tagName);
+    return chosenTag.some((item) => item === tagName);
   };
 
   const selectTag = (tagName) => {
-    if (taskData.tags.some((item) => item === tagName)) {
-      const newTags = taskData.tags.filter((item) => item !== tagName);
-      setTaskData((prev) => ({ ...prev, tags: newTags }));
+    if (chosenTag.some((item) => item === tagName)) {
+      const newTags = chosenTag.filter((item) => item !== tagName);
+      setChosenTag(newTags);
     } else {
-      setTaskData((prev) => ({ ...prev, tags: [...prev.tags, tagName] }));
+      setChosenTag((prev) => [...prev, tagName]);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTasks((prev) => [...prev, taskData]);
-    setTaskData({
-      task: "",
-      status: "todo",
-      tags: [],
-    });
+    let newTask = {
+      task: inputRef.current.value,
+      status: statusRef.current.value,
+      tags: chosenTag,
+    };
+    if (inputRef.current.value !== "" && chosenTag.length !== 0) {
+      setTasks((prev) => [...prev, newTask]);
+      inputRef.current.value = "";
+      statusRef.current.value = "todo";
+      setChosenTag([]);
+    }
   };
 
   return (
@@ -51,10 +48,9 @@ const TaskForm = () => {
         <input
           type="text"
           name="task"
-          value={taskData.task}
           className="task-input"
           placeholder="Enter your task"
-          onChange={handleChange}
+          ref={inputRef}
         />
         <div className="form-bottom">
           <div className="form-bottom__buttons">
@@ -67,12 +63,7 @@ const TaskForm = () => {
               />
             ))}
           </div>
-          <select
-            name="status"
-            className="task-status"
-            onChange={handleChange}
-            value={taskData.status}
-          >
+          <select name="status" className="task-status" ref={statusRef}>
             <option value="todo">Todo</option>
             <option value="progress">In Progess</option>
             <option value="complete">Completed</option>
