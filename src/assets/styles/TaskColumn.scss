@@ -1,0 +1,7 @@
+@use "./index.scss" as *;
+
+.task-column {
+  h2 {
+    margin-bottom: toRem(20);
+  }
+}

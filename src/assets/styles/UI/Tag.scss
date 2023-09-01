@@ -1,12 +1,10 @@
 @use "./../index.scss" as *;
 
 .tag {
-  padding: toRem(2) toRem(4);
+  padding: toRem(2) toRem(10);
   outline: none;
-  transition: transform 0.5s;
+  border: toRem(1) solid $input-bdr-clr;
+  border-radius: toRem(5);
+  transition: all 0.5s;
   cursor: pointer;
-
-  &:hover {
-    transform: scale(1.1);
-  }
 }
